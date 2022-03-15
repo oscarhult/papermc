@@ -1,5 +1,7 @@
-FROM gcr.io/distroless/java17-debian11:nonroot
-USER nonroot
+# FROM gcr.io/distroless/java17-debian11:nonroot
+# Start using nonroot? Permissions on existing volumes?
+
+FROM gcr.io/distroless/java17-debian11
 
 ARG PAPERMC_VERSION=
 ARG PAPERMC_BUILD=
