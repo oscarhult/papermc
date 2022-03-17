@@ -1,12 +1,14 @@
-# FROM gcr.io/distroless/java17-debian11:nonroot
 # Start using nonroot? Permissions on existing volumes?
+# FROM gcr.io/distroless/java17-debian11:nonroot
+# USER nonroot
+# ADD --chown=65532:65532 https://papermc.io/api/v2/projects/paper/versions/${PAPERMC_VERSION}/builds/${PAPERMC_BUILD}/downloads/paper-${PAPERMC_VERSION}-${PAPERMC_BUILD}.jar /papermc.jar
 
 FROM gcr.io/distroless/java17-debian11
 
 ARG PAPERMC_VERSION=
 ARG PAPERMC_BUILD=
 
-ADD --chown=65532:65532 https://papermc.io/api/v2/projects/paper/versions/${PAPERMC_VERSION}/builds/${PAPERMC_BUILD}/downloads/paper-${PAPERMC_VERSION}-${PAPERMC_BUILD}.jar /papermc.jar
+ADD https://papermc.io/api/v2/projects/paper/versions/${PAPERMC_VERSION}/builds/${PAPERMC_BUILD}/downloads/paper-${PAPERMC_VERSION}-${PAPERMC_BUILD}.jar /papermc.jar
 
 WORKDIR /papermc
 VOLUME [ "/papermc" ]
