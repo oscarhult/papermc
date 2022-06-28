@@ -1,4 +1,4 @@
-FROM alpine:3
+FROM oscarhult/jre:17
 
 EXPOSE 25565/tcp 25565/udp
 
@@ -6,14 +6,6 @@ ARG PAPERMC_VERSION
 ARG PAPERMC_BUILD
 
 ADD https://papermc.io/api/v2/projects/paper/versions/${PAPERMC_VERSION}/builds/${PAPERMC_BUILD}/downloads/paper-${PAPERMC_VERSION}-${PAPERMC_BUILD}.jar /papermc.jar
-
-ENV JAVA_HOME=/opt/openjdk
-ENV PATH="$JAVA_HOME/bin:$PATH"
-
-RUN mkdir -p $JAVA_HOME \
-  && wget -q -O /tmp/java.tar.gz https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.3%2B7/OpenJDK17U-jre_x64_alpine-linux_hotspot_17.0.3_7.tar.gz \
-  && tar --extract --file /tmp/java.tar.gz --directory $JAVA_HOME --strip-components 1 --no-same-owner \
-  && rm -rf /tmp/*
 
 WORKDIR /papermc
 VOLUME /papermc
