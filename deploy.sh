@@ -9,13 +9,12 @@ if [[ ! ${id} ]]; then
   tag2=oscarhult/papermc:${version}
   tag3=oscarhult/papermc:latest
 
-  docker build \
+  docker build . \
     --tag ${tag1} \
     --tag ${tag2} \
     --tag ${tag3} \
     --build-arg PAPERMC_VERSION=${version} \
-    --build-arg PAPERMC_BUILD=${build} \
-    'https://github.com/oscarhult/papermc.git'
+    --build-arg PAPERMC_BUILD=${build}
 
   docker login -u oscarhult --password-stdin <<< ${DOCKER_ACCESS_TOKEN}
 
