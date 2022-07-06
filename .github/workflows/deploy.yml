@@ -1,0 +1,15 @@
+name: deploy
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+    
+env:
+  DOCKER_ACCESS_TOKEN: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+  
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: bash deploy.sh
