@@ -1,4 +1,4 @@
-FROM oscarhult/jre17
+FROM oscarhult/jre21
 
 EXPOSE 25565/tcp 25565/udp
 
