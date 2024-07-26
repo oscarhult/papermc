@@ -2,6 +2,8 @@ FROM oscarhult/jre21
 
 EXPOSE 25565/tcp 25565/udp
 
+RUN apk add --no-cache libstdc++
+
 ARG PAPERMC_VERSION
 ARG PAPERMC_BUILD
 
