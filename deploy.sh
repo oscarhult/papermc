@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version=1.21.7
+version=1.21.8
 build=$(curl -fsL https://api.papermc.io/v2/projects/paper/versions/${version}/builds | jq '.builds | max_by(.build) | .build')
 id=$(curl -fsL https://hub.docker.com/v2/repositories/oscarhult/papermc/tags/${version}-${build} | jq '.id')
 
