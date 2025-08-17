@@ -4,7 +4,7 @@ EXPOSE 25565/tcp 25565/udp
 
 RUN apk add --no-cache libstdc++
 
-ARG PAPERMC_BUILD
+ARG PAPERMC_URL
 
 ADD ${PAPERMC_URL} /papermc.jar
 
