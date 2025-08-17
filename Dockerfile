@@ -4,10 +4,9 @@ EXPOSE 25565/tcp 25565/udp
 
 RUN apk add --no-cache libstdc++
 
-ARG PAPERMC_VERSION
 ARG PAPERMC_BUILD
 
-ADD https://api.papermc.io/v2/projects/paper/versions/${PAPERMC_VERSION}/builds/${PAPERMC_BUILD}/downloads/paper-${PAPERMC_VERSION}-${PAPERMC_BUILD}.jar /papermc.jar
+ADD ${PAPERMC_URL} /papermc.jar
 
 WORKDIR /papermc
 VOLUME /papermc

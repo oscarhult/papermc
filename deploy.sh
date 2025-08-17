@@ -1,7 +1,11 @@
 #!/bin/bash
 
 version=1.21.8
-build=$(curl -fsL https://api.papermc.io/v2/projects/paper/versions/${version}/builds | jq '.builds | max_by(.build) | .build')
+
+curl -fsL https://fill.papermc.io/v3/projects/paper/versions/${version}/builds | jq '.[0]' > build.json
+build=$(jq -r '.id' build.json)
+url=$(jq -r '.downloads["server:default"].url' build.json)
+
 id=$(curl -fsL https://hub.docker.com/v2/repositories/oscarhult/papermc/tags/${version}-${build} | jq '.id')
 
 if [[ ! ${id} ]]; then
@@ -13,8 +17,7 @@ if [[ ! ${id} ]]; then
     --tag ${tag1} \
     --tag ${tag2} \
     --tag ${tag3} \
-    --build-arg PAPERMC_VERSION=${version} \
-    --build-arg PAPERMC_BUILD=${build}
+    --build-arg PAPERMC_URL=${url}
 
   docker login -u oscarhult --password-stdin <<< ${DOCKER_ACCESS_TOKEN}
 
@@ -22,6 +25,5 @@ if [[ ! ${id} ]]; then
   docker push ${tag2}
   docker push ${tag3}
 else
-    curl -fsL https://api.papermc.io/v2/projects/paper/versions/${version}/builds | jq '.builds | max_by(.build)'
-    curl -fsL https://hub.docker.com/v2/repositories/oscarhult/papermc/tags/${version}-${build} | jq '.'
+    exit 0
 fi
