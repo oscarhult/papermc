@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version=1.21.8
+version=1.21.10
 
 curl -fsL https://fill.papermc.io/v3/projects/paper/versions/${version}/builds | jq '.[0]' > build.json
 build=$(jq -r '.id' build.json)
