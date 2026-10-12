@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-version=26.2
+version=26.3
 
 # Fetch latest build metadata
 build_json=$(curl -fsL "https://fill.papermc.io/v3/projects/paper/versions/${version}/builds" | jq '.[0]')
